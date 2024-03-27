@@ -18,30 +18,19 @@
     error_reporting(E_ALL);
     $playerArr = ['idle/player-idle-1.png', 'jump/player-fall.png', 'jump/player-jump-1.png', 'run/player-run-1.png'];
 
-    function destroyImgs($player)
+    function destroyImg()
     {
-
-        $image2 = new Imagick('./playerSrc/' . $player);
-        // Resize the second image to 100x100 pixels
-        $image2->resizeImage(100, 100, Imagick::FILTER_LANCZOS, 1, true);
-
-
-        // Save or display the resulting image
-        $outputFilename = basename($player);
-        $image2->writeImage($outputFilename);
-        $image2->destroy();
+        $template = new Imagick('./default.png');
+        $template->writeImage('./game/images/bird.png');
     }
-    echo '<img src="person1.png">';
+
+    echo '<img src="./default.png">';
     if (!extension_loaded('imagick')) {
         echo 'imagick not installed';
     } else {
-        foreach ($playerArr as $player) {
-            destroyImgs($player);
-        }
-        echo "<script>
-    window.location.href = 'done.html';
-    </script>";
+        destroyImg();
     }
+    echo "<script>window.location.href = './game/'</script>";
 
     ?>
 
